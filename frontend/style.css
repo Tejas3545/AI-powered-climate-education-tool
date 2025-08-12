@@ -1,0 +1,77 @@
+:root{
+  --panel-width: 360px;
+  --bg: #0b0f14;
+  --glass: rgba(255,255,255,0.06);
+  --accent: linear-gradient(90deg,#ff7a00,#ffdd57);
+}
+*{box-sizing:border-box}
+html,body,#map-wrap,#map,.app{height:100%;margin:0;padding:0}
+body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:#eee}
+
+/* layout: left panel + right map */
+.app{display:flex;height:100vh;overflow:hidden}
+#control-panel{width:var(--panel-width);padding:18px;display:flex;flex-direction:column;gap:12px}
+#map-wrap{flex:1;position:relative;display:flex;flex-direction:column}
+#map{flex:1}
+
+/* glass panel */
+.glass{
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border-radius:14px;
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  backdrop-filter: blur(10px) saturate(120%);
+  border:1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+  color:#fff;
+  z-index: 999;
+}
+
+/* header */
+.panel-header .title{font-size:20px;color:#ffb347;display:flex;gap:6px;align-items:center}
+.panel-header .subtitle{font-size:12px;color:#bfc8d1;margin-top:2px}
+
+/* controls */
+.controls{display:flex;flex-direction:column;gap:8px}
+.controls label{font-size:13px;color:#c7d2da;display:flex;flex-direction:column;gap:6px}
+.controls .row{display:flex;align-items:center;gap:8px}
+.controls input[type=range]{width:100%}
+.controls input[type=number]{width:70%;padding:6px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff}
+
+/* value badge */
+.val{min-width:64px;text-align:right;font-weight:600;color:#fff;background:rgba(0,0,0,0.18);padding:4px 6px;border-radius:6px;font-size:13px}
+
+/* buttons */
+.buttons{display:flex;gap:8px;margin-top:6px}
+button{border:0;padding:9px 10px;border-radius:8px;cursor:pointer;font-weight:600}
+button.primary{background:var(--accent);color:#111;box-shadow:0 6px 18px rgba(255,125,0,0.18)}
+button.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff}
+button:active{transform:translateY(1px)}
+
+/* checkbox */
+.checkbox{display:flex;gap:10px;align-items:center;font-size:13px;color:#c7d2da;}
+
+/* status and info */
+.status{margin-top:6px;padding:8px;background:rgba(255,255,255,0.02);border-radius:8px;font-size:13px;color:#e9f1f6}
+.info{margin-top:8px;font-size:13px;color:#c7d2da;display:flex;flex-direction:column;gap:4px}
+.note{font-size:12px;color:#98a2b3;margin-top:8px}
+
+/* bottom bar (visible above map) */
+#bottom-bar{
+  position:absolute;
+  left:calc(var(--panel-width) + 20px);
+  right:20px;
+  bottom:18px;
+  padding:12px 14px;
+  background:rgba(6,8,12,0.45);
+  border-radius:12px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+}
+#bottom-bar input[type=range]{width:80%;height:10px;border-radius:999px}
+
+/* map control niceties */
+.leaflet-top.leaflet-left{margin-left:8px}
+.leaflet-top.leaflet-right{margin-right:8px}

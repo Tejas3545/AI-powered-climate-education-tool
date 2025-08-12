@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FireWise — Simulation</title>
+
+  <!-- styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Leaflet + heat plugin -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside id="control-panel" class="glass">
+      <div class="panel-header">
+        <div class="title">🔥 <strong>FireWise</strong></div>
+        <div class="subtitle">Realistic wildfire demo</div>
+      </div>
+
+      <div class="controls">
+        <label>Wind speed (km/h)
+          <div class="row">
+            <input id="wind_speed" type="range" min="0" max="30" value="7" />
+            <span id="wind_speed_val" class="val">7 km/h</span>
+          </div>
+        </label>
+
+        <label>Wind direction (°)
+          <div class="row">
+            <input id="wind_dir" type="range" min="0" max="360" value="90" />
+            <span id="wind_dir_val" class="val">90°</span>
+          </div>
+        </label>
+
+        <label>Humidity (%)
+          <div class="row">
+            <input id="humidity" type="range" min="0" max="100" value="20" />
+            <span id="humidity_val" class="val">20%</span>
+          </div>
+        </label>
+
+        <label>Temperature (°C)
+          <div class="row">
+            <input id="temperature" type="range" min="-5" max="50" value="30" />
+            <span id="temperature_val" class="val">30°C</span>
+          </div>
+        </label>
+
+        <label>Steps
+          <div class="row">
+            <input id="steps" type="number" min="1" max="40" value="10" />
+            <span id="steps_val" class="val">10</span>
+          </div>
+        </label>
+
+        <label>Grid size
+          <div class="row">
+            <input id="grid_size" type="number" min="16" max="128" value="64" />
+            <span id="grid_size_val" class="val">64</span>
+          </div>
+        </label>
+
+        <label>Cell size (deg)
+          <div class="row">
+            <input id="cell_size" type="number" step="0.001" min="0.0005" max="0.02" value="0.002" />
+            <span id="cell_size_val" class="val">0.002°</span>
+          </div>
+        </label>
+
+        <div class="buttons">
+          <button id="runBtn" class="primary">Run Simulation</button>
+          <button id="playBtn" class="secondary">Play</button>
+        </div>
+
+        <label class="checkbox">
+          <input id="showRisk" type="checkbox" />
+          <span>Show predicted risk</span>
+        </label>
+
+        <div id="status" class="status">Click on the map to set the start point.</div>
+
+        <div class="info">
+          <div>Step: <span id="infoStep">—</span></div>
+          <div>Affected cells: <span id="infoCells">—</span></div>
+          <div>Approx area (km²): <span id="infoArea">—</span></div>
+        </div>
+
+        <div class="note">Tip: click anywhere on the map to set the fire start point (marker will appear).</div>
+
+        <div class="map-view-container">
+          <label>Map view:
+            <select id="mapStyle" class="map-style-select">
+              <option value="street">Street</option>
+              <option value="satellite">Satellite</option>
+              <option value="hybrid">Hybrid</option>
+              <option value="dark">Dark</option>
+            </select>
+          </label>
+        </div>
+
+      </div>
+    </aside>
+
+    <main id="map-wrap">
+      <div id="map"></div>
+      <div id="bottom-bar">
+        <label for="timestep" class="visually-hidden">Timestep</label>
+        <input id="timestep" type="range" min="0" max="0" value="0" title="Timestep" />
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
